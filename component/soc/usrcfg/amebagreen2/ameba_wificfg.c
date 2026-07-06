@@ -23,7 +23,7 @@ _WEAK void wifi_set_user_config(void)
 #ifdef CONFIG_WIFI_P2P_ENABLE
 	wifi_user_config.fast_reconnect_en = 0;
 #else
-	wifi_user_config.fast_reconnect_en = 1;
+	wifi_user_config.fast_reconnect_en = 0;
 #endif
 	wifi_user_config.auto_reconnect_en = 1;
 	wifi_user_config.auto_reconnect_count = 10;

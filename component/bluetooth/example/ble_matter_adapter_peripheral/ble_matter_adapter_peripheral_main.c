@@ -20,6 +20,9 @@
 #include <rtk_bt_att_defs.h>
 #include <rtk_bt_gatts.h>
 #include <bt_utils.h>
+#if defined(CONFIG_BT_MESH_DEVICE_MATTER) && CONFIG_BT_MESH_DEVICE_MATTER
+#include <rtk_bt_mesh_common.h>
+#endif
 
 #include "matter_blemgr_common.h"
 #include "ble_matter_adapter_peripheral_main.h"
@@ -1092,6 +1095,34 @@ int ble_matter_adapter_disconnect(uint16_t conn_handle)
 
 	return 0;
 }
+#if defined(CONFIG_BT_MESH_DEVICE_MATTER) && CONFIG_BT_MESH_DEVICE_MATTER
+int ble_mesh_device_enable(void)
+{
+	rtk_bt_app_conf_t bt_app_conf = {0};
+
+	bt_app_conf.app_profile_support = RTK_BT_PROFILE_GATTS | RTK_BT_PROFILE_MESH | RTK_BT_PROFILE_GATTC;
+	bt_app_conf.bt_mesh_app_conf.bt_mesh_role = RTK_BT_MESH_ROLE_DEVICE;
+	bt_app_conf.mtu_size = 180;
+	bt_app_conf.master_init_mtu_req = true;
+	bt_app_conf.slave_init_mtu_req = false;
+	bt_app_conf.prefer_all_phy = 0;
+	bt_app_conf.prefer_tx_phy = 1 | 1 << 1 | 1 << 2;
+	bt_app_conf.prefer_rx_phy = 1 | 1 << 1 | 1 << 2;
+	bt_app_conf.max_tx_octets = 0x40;
+	bt_app_conf.max_tx_time = 0x200;
+	bt_app_conf.user_def_service = false;
+	bt_app_conf.cccd_not_check = false;
+
+	BT_APP_PROCESS(rtk_bt_enable(&bt_app_conf));
+	BT_APP_PROCESS(rtk_bt_evt_register_callback(RTK_BT_LE_GP_GAP, ble_peripheral_gap_app_callback));
+	BT_APP_PROCESS(rtk_bt_evt_register_callback(RTK_BT_LE_GP_GATTS, ble_peripheral_gatts_app_callback));
+	BT_APP_PROCESS(ble_matter_adapter_srv_add());
+	ble_matter_adapter_callback_task_init();
+
+	return 0;
+}
+#endif /* CONFIG_BT_MESH_DEVICE_MATTER */
+
 #if CONFIG_BLE_MATTER_MULTI_ADV_ON
 /*============================================================================*
  *                     Customer Adv Functions

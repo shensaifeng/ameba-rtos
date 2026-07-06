@@ -50,7 +50,7 @@ ameba_list_append(private_sources
 #WARNING: Select right API based on your component's release/not-release/standalone
 
 ###NOTE: For open-source component, always build from source
-ameba_add_internal_library(ble_mesh_device
+ameba_add_internal_library(ble_matter_adapter_peripheral
     p_SOURCES
         ${private_sources}
     p_INCLUDES
