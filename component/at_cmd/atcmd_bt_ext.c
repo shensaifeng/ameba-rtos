@@ -71,6 +71,7 @@ const log_item_t at_bt_cmds[] = {
 #endif /* RTK_BLE_AUDIO_SUPPORT */
 #if defined(RTK_BLE_MESH_SUPPORT) && RTK_BLE_MESH_SUPPORT
 	{"+BLEMESHSTACK",       fBLEMESHSTACK},
+	{"+BLEMESHBRIDGE",      fBLEMESHBRIDGE},
 	{"+BLEMESHDATA",        fBLEMESHDATA},
 	{"+BLEMESHCONFIG",      fBLEMESHCONFIG},
 	{"+BLEMESHGOO",         fBLEMESHGOO},

@@ -927,7 +927,7 @@ static void rtk_bt_mesh_gap_init(void)
 #endif
 #if defined(RTK_BLE_MESH_DEVICE_SUPPORT) && RTK_BLE_MESH_DEVICE_SUPPORT
 	if (MESH_ROLE_DEVICE == mesh_role) {
-		dev_name = "Mesh Device";
+		dev_name = "matter bridge";
 	}
 #endif
 	gap_sched_params_set(GAP_SCHED_PARAMS_DEVICE_NAME, dev_name, GAP_DEVICE_NAME_LEN);
@@ -1128,6 +1128,9 @@ static void rtk_bt_mesh_stack_init(void *data)
 #if defined(RTK_BLE_MESH_DEVICE_SUPPORT) && RTK_BLE_MESH_DEVICE_SUPPORT
 	if (MESH_ROLE_DEVICE == mesh_role) {
 		server_models_init();
+#if defined(BT_MESH_ENABLE_GENERIC_ON_OFF_CLIENT_MODEL) && BT_MESH_ENABLE_GENERIC_ON_OFF_CLIENT_MODEL
+		generic_on_off_client_model_init();
+#endif
 	}
 #endif
 	compo_data_page0_header_t compo_data_page0_header = {COMPANY_ID, PRODUCT_ID, VERSION_ID};

@@ -88,6 +88,8 @@
 #define BT_MESH_ENABLE_REMOTE_PROVISIONING_SERVER_MODEL                1
 #endif
 #define BT_MESH_ENABLE_GENERIC_ON_OFF_SERVER_MODEL                     1
+// Bridge role needs Client model to send OnOff commands to other Mesh nodes
+#define BT_MESH_ENABLE_GENERIC_ON_OFF_CLIENT_MODEL                     1
 #define BT_MESH_ENABLE_GENERIC_LEVEL_SERVER_MODEL                      1
 #define BT_MESH_ENABLE_GENERIC_DEFAULT_TRANSTION_TIME_SERVER_MODEL     1
 #define BT_MESH_ENABLE_GENERIC_POWER_ON_OFF_SERVER_MODEL               1

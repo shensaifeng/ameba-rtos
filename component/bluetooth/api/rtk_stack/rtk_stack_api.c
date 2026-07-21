@@ -756,12 +756,6 @@ uint16_t bt_stack_act_handler(rtk_bt_cmd_t *p_cmd)
 		BT_LOGD("RTK_BT_LE_GP_MESH_CONFIG_CLIENT_MODEL group");
 		bt_mesh_config_client_model_act_handle(p_cmd);
 		break;
-#if defined(BT_MESH_ENABLE_GENERIC_ON_OFF_CLIENT_MODEL) && BT_MESH_ENABLE_GENERIC_ON_OFF_CLIENT_MODEL
-	case RTK_BT_LE_GP_MESH_GENERIC_ONOFF_CLIENT_MODEL:
-		BT_LOGD("RTK_BT_LE_GP_MESH_GENERIC_ONOFF_CLIENT_MODEL group");
-		bt_mesh_generic_onoff_client_model_act_handle(p_cmd);
-		break;
-#endif
 #if defined(BT_MESH_ENABLE_REMOTE_PROVISIONING_CLIENT_MODEL) && BT_MESH_ENABLE_REMOTE_PROVISIONING_CLIENT_MODEL
 	case RTK_BT_LE_GP_MESH_REMOTE_PROV_CLIENT_MODEL:
 		BT_LOGD("RTK_BT_LE_GP_MESH_REMOTE_PROV_CLIENT_MODEL group");
@@ -887,6 +881,12 @@ uint16_t bt_stack_act_handler(rtk_bt_cmd_t *p_cmd)
 		bt_mesh_health_client_model_act_handle(p_cmd);
 		break;
 #endif  // RTK_BLE_MESH_PROVISIONER_SUPPORT
+#if defined(BT_MESH_ENABLE_GENERIC_ON_OFF_CLIENT_MODEL) && BT_MESH_ENABLE_GENERIC_ON_OFF_CLIENT_MODEL
+	case RTK_BT_LE_GP_MESH_GENERIC_ONOFF_CLIENT_MODEL:
+		BT_LOGD("RTK_BT_LE_GP_MESH_GENERIC_ONOFF_CLIENT_MODEL group");
+		bt_mesh_generic_onoff_client_model_act_handle(p_cmd);
+		break;
+#endif
 #if defined(RTK_BLE_MESH_DEVICE_SUPPORT) && RTK_BLE_MESH_DEVICE_SUPPORT
 #if defined(BT_MESH_ENABLE_GENERIC_USER_PROPERTY_SERVER_MODEL) && BT_MESH_ENABLE_GENERIC_USER_PROPERTY_SERVER_MODEL
 	case RTK_BT_LE_GP_MESH_GENERIC_USER_PROPERTY_SERVER_MODEL:

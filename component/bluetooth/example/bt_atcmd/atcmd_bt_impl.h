@@ -38,6 +38,9 @@ void fBLEGAP(u16 argc, char *argv[]);
 /* mesh stack cmd impl */
 void fBLEMESHSTACK(u16 argc, char *argv[]);
 
+/* matter bridge node management cmd impl */
+void fBLEMESHBRIDGE(u16 argc, char *argv[]);
+
 /* mesh config client model cmd impl */
 void fBLEMESHCONFIG(u16 argc, char *argv[]);
 

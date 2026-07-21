@@ -84,6 +84,7 @@ endif()
 if(CONFIG_BT_MESH_DEVICE_SUPPORT)
 	ameba_list_append(private_sources
         model/delay_execution.c
+        model/generic_on_off_client.c
         model/generic_battery_server.c
         model/generic_default_transition_time_server.c
         model/generic_level_server.c
